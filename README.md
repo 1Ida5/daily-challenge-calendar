@@ -12,7 +12,7 @@ Daily Challenge Kalender er en personlig kalender-applikasjon der brukeren kan l
 - Opprette egne utfordringer
 - Redigere og slette utfordringer
 - Knytte utfordringer til spesifikke datoer
-- Automatisk tilfeldig tildeling av utfordringer på enkelte dager
+- Tilfeldig tildeling av utfordringer på enkelte dager
 - Markere utfordringer som fullført
 
 ### Kalender og visning
