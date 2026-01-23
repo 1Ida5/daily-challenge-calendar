@@ -43,11 +43,11 @@ Eksempel på datastruktur:
   "completed": false
 }
 
-GET	/api/challenges	Henter alle utfordringer
-POST	/api/challenges	Oppretter en ny utfordring
-PUT	/api/challenges/	Oppdaterer en eksisterende utfordring
-PATCH	/api/challenges//complete	Marker utfordring som fullført
-DELETE	/api/challenges/	Sletter en utfordring
+- GET	/api/challenges	Henter alle utfordringer
+- POST	/api/challenges	Oppretter en ny utfordring
+- PUT	/api/challenges/	Oppdaterer en eksisterende utfordring
+- PATCH	/api/challenges//complete	Marker utfordring som fullført
+- DELETE	/api/challenges/	Sletter en utfordring
 
 API-et støtter CRUD-funksjonalitet (Create, Read, Update, Delete).
 
