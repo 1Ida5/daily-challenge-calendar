@@ -1,0 +1,18 @@
+meta {
+  name: Delete challenge
+  type: http
+  seq: 5
+}
+
+delete {
+  url: '''
+    http://localhost:8080/api/challenges/123
+    
+'''
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

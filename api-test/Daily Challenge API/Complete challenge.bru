@@ -1,0 +1,16 @@
+meta {
+  name: Complete challenge
+  type: http
+  seq: 4
+}
+
+patch {
+  url: http://localhost:8080/api/challenges/123/complete
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

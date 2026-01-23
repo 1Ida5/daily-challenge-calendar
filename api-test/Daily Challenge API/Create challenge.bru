@@ -1,0 +1,24 @@
+meta {
+  name: Create challenge
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/challenges
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "go for a walk",
+    "date": "2026-02-01"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
