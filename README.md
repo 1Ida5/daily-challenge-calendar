@@ -28,3 +28,27 @@ Daily Challenge Kalender er en personlig kalender-applikasjon der brukeren kan l
 - Opprette nye utfordringer offline
 - Synkronisere data når brukeren er online igjen
 - Installerbar som Progressive Web App (PWA)
+
+## Start working on API
+
+API-et håndterer Challenge.
+
+En utfordring representerer en daglig oppgave som kan knyttes til en spesifikk dato og markeres som fullført.
+
+Eksempel på datastruktur:
+{
+  "id": "uuid",
+  "title": "Gå en tur",
+  "date": "2026-02-01",
+  "completed": false
+}
+
+GET	/api/challenges	Henter alle utfordringer
+POST	/api/challenges	Oppretter en ny utfordring
+PUT	/api/challenges/	Oppdaterer en eksisterende utfordring
+PATCH	/api/challenges//complete	Marker utfordring som fullført
+DELETE	/api/challenges/	Sletter en utfordring
+
+API-et støtter CRUD-funksjonalitet (Create, Read, Update, Delete).
+
+API-test ved hjelp av bruno
