@@ -1,4 +1,5 @@
 import express from "express";
+import { validateChallenge } from "./validation-middleware/middleware/validateChallenge.mjs";
 
 const PORT = 8080;
 const app = new express();
@@ -14,11 +15,11 @@ app.get("/api/challenges", (req, res) => {
   res.json([]);
 });
 
-app.post("/api/challenges", (req, res) => {
+app.post("/api/challenges", validateChallenge, (req, res) => {
   res.status(201).json({ message: "Challenge created" });
 });
 
-app.put("/api/challenges/:id", (req, res) => {
+app.put("/api/challenges/:id", validateChallenge, (req, res) => {
   res.json({ message: "Challenge updated" });
 });
 
