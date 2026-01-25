@@ -1,0 +1,23 @@
+meta {
+  name: middleware-test
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:8080/api/challenges
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "date": "2026-02-01"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
