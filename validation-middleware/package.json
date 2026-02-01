@@ -1,0 +1,7 @@
+{
+  "name": "validation-middleware",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Express middleware for validating challenge input data",
+  "main": "middleware/validateChallenge.js"
+}
