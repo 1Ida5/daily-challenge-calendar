@@ -1,11 +1,13 @@
 import express from "express";
-import { validateChallenge } from "./validation-middleware/middleware/validateChallenge.mjs";
+import { validateChallenge } from "./validation-middleware/validateChallenge.mjs";
+import userRouter from "./routes/users.mjs";
 
 const PORT = 8080;
 const app = new express();
 
 app.use(express.static("public"));
 app.use(express.json());
+app.use("/api/users", userRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello Class!");

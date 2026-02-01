@@ -1,0 +1,25 @@
+meta {
+  name: users
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:8080/api/users
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "username": "Kari",
+    "acceptTos": true
+  }
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

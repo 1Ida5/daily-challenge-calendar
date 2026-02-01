@@ -1,14 +1,17 @@
 ## Beskrivelse
+
 Daily Challenge Kalender er en personlig kalender-applikasjon der brukeren kan lage egne daglige utfordringer. Utfordringer kan enten legges på bestemte datoer eller velges tilfeldig av systemet og dukke opp på en dag i kalenderen. Brukeren kan fullføre utfordringer og følge egen progresjon over tid.
 
 ## Feature Map
 
 ### Bruker
+
 - Registrere bruker
 - Logge inn og ut
 - Se egen profil og progresjon
 
 ### Utfordringer
+
 - Opprette egne utfordringer
 - Redigere og slette utfordringer
 - Knytte utfordringer til spesifikke datoer
@@ -16,14 +19,17 @@ Daily Challenge Kalender er en personlig kalender-applikasjon der brukeren kan l
 - Markere utfordringer som fullført
 
 ### Kalender og visning
+
 - Kalendervisning av dager og utfordringer
 - Oversikt over fullførte og kommende utfordringer
 
 ### Progresjon
+
 - Vise gjennomføringsgrad over tid
 - Enkel statistikk basert på fullførte utfordringer
 
 ### Offline og PWA
+
 - Vise eksisterende utfordringer offline
 - Opprette nye utfordringer offline
 - Synkronisere data når brukeren er online igjen
@@ -37,16 +43,16 @@ En utfordring representerer en daglig oppgave som kan knyttes til en spesifikk d
 
 Eksempel på datastruktur:
 {
-  "id": "uuid",
-  "title": "Gå en tur",
-  "date": "2026-02-01",
-  "completed": false
+"id": "uuid",
+"title": "Gå en tur",
+"date": "2026-02-01",
+"completed": false
 }
 
-- GET	Henter alle utfordringer
+- GET Henter alle utfordringer
 - POST Oppretter en ny utfordring
-- PUT	Oppdaterer en eksisterende utfordring
-- PATCH	Marker utfordring som fullført
+- PUT Oppdaterer en eksisterende utfordring
+- PATCH Marker utfordring som fullført
 - DELETE Sletter en utfordring
 
 API-et støtter CRUD-funksjonalitet (Create, Read, Update, Delete).

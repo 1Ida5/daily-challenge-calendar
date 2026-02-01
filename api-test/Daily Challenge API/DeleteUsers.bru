@@ -1,0 +1,22 @@
+meta {
+  name: DeleteUsers
+  type: http
+  seq: 8
+}
+
+delete {
+  url: http://localhost:8080/api/users/1f174ade-5387-4a33-9240-7ea84f77f3bf
+  body: json
+  auth: inherit
+}
+
+body:json {
+  { "error": "User not found" }
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
