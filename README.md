@@ -64,6 +64,6 @@ API-test ved hjelp av bruno
 ## CLIENT
 
 Denne innleveringen er en enkel klient for Daily Challenge Kalender som bruker et eksisterende User API.
-Klienten ligger i Public og er bygget med tydelig struktur og ryddig filoppsett.
+Klienten ligger i Public og er bygget med struktur og ryddig filoppsett.
 Brukere kan opprettes, redigeres og slettes via egne UI-komponenter.
 UI oppdateres automatisk når data endres.
