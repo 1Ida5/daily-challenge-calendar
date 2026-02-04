@@ -3,6 +3,14 @@ import { Users, createUser, generateID } from "../data/usersStore.mjs";
 
 const router = express.Router();
 
+// GET all users
+router.get("/", (req, res) => {
+  const usersArray = Object.values(Users).filter((user) => !user.deletedAt);
+
+  res.json(usersArray);
+});
+
+// CREATE user
 router.post("/", (req, res) => {
   const { username, acceptTos } = req.body;
 
@@ -23,6 +31,24 @@ router.post("/", (req, res) => {
   });
 });
 
+// EDIT user
+router.put("/:id", (req, res) => {
+  const user = Users[req.params.id];
+
+  if (!user || user.deletedAt) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  const { username } = req.body;
+
+  if (username) {
+    user.username = username;
+  }
+
+  res.json(user);
+});
+
+// DELETE user
 router.delete("/:id", (req, res) => {
   const user = Users[req.params.id];
 

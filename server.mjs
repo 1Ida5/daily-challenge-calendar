@@ -1,38 +1,17 @@
 import express from "express";
-import { validateChallenge } from "./validation-middleware/validateChallenge.mjs";
 import userRouter from "./routes/users.mjs";
+import challengeRouter from "./routes/challenges.mjs";
 
 const PORT = 8080;
-const app = new express();
+const app = express();
 
-app.use(express.static("public"));
 app.use(express.json());
+
 app.use("/api/users", userRouter);
+app.use("/api/challenges", challengeRouter);
 
-app.get("/", (req, res) => {
-  res.send("Hello Class!");
-});
-
-app.get("/api/challenges", (req, res) => {
-  res.json([]);
-});
-
-app.post("/api/challenges", validateChallenge, (req, res) => {
-  res.status(201).json({ message: "Challenge created" });
-});
-
-app.put("/api/challenges/:id", validateChallenge, (req, res) => {
-  res.json({ message: "Challenge updated" });
-});
-
-app.patch("/api/challenges/:id/complete", (req, res) => {
-  res.json({ message: "Challenge marked as completed" });
-});
-
-app.delete("/api/challenges/:id", (req, res) => {
-  res.status(204).end();
-});
+app.use(express.static("Public"));
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
