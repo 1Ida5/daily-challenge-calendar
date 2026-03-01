@@ -1,25 +1,57 @@
 import express from "express";
 import { validateChallenge } from "../validation-middleware/validateChallenge.mjs";
 
+import {
+  createChallenge,
+  getAllChallenges,
+  updateChallenge,
+  completeChallenge,
+  deleteChallenge,
+} from "../src/repositories/challengeRepository.mjs";
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.json([]);
+// GET all
+router.get("/", async (req, res) => {
+  const challenges = await getAllChallenges();
+  res.json(challenges);
 });
 
-router.post("/", validateChallenge, (req, res) => {
-  res.status(201).json({ message: "Challenge created" });
+// CREATE
+router.post("/", validateChallenge, async (req, res) => {
+  const { title, description } = req.body;
+
+  const challenge = await createChallenge(title, description);
+  res.status(201).json(challenge);
 });
 
-router.put("/:id", validateChallenge, (req, res) => {
-  res.json({ message: "Challenge updated" });
+// UPDATE
+router.put("/:id", validateChallenge, async (req, res) => {
+  const { title, description } = req.body;
+
+  const updated = await updateChallenge(req.params.id, title, description);
+
+  if (!updated) {
+    return res.status(404).json({ error: "Challenge not found" });
+  }
+
+  res.json(updated);
 });
 
-router.patch("/:id/complete", (req, res) => {
-  res.json({ message: "Challenge marked as completed" });
+// COMPLETE
+router.patch("/:id/complete", async (req, res) => {
+  const updated = await completeChallenge(req.params.id);
+
+  if (!updated) {
+    return res.status(404).json({ error: "Challenge not found" });
+  }
+
+  res.json(updated);
 });
 
-router.delete("/:id", (req, res) => {
+// DELETE
+router.delete("/:id", async (req, res) => {
+  await deleteChallenge(req.params.id);
   res.status(204).end();
 });
 
