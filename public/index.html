@@ -1,9 +1,75 @@
-<body>
-  <h1>challenge calendar</h1>
-  <p style="font-weight: bolder">welcome to the challenge calendar app!</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Daily Challenge</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
 
-  <user-form></user-form>
-  <user-list></user-list>
+  <body>
+    <div class="auth-container">
+      <h1>Daily Challenge</h1>
+      <p id="auth-description">Login or create your account</p>
 
-  <script src="./app.mjs" type="module"></script>
-</body>
+      <div class="auth-tabs" role="tablist">
+        <button
+          id="loginTab"
+          class="active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="auth-form"
+        >
+          Login
+        </button>
+
+        <button
+          id="registerTab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="auth-form"
+        >
+          Register
+        </button>
+      </div>
+
+      <form id="auth-form" aria-describedby="auth-description">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          required
+          autocomplete="username"
+        />
+
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          autocomplete="current-password"
+        />
+
+        <div id="tos-container" class="tos-container">
+          <label class="tos-label">
+            <input type="checkbox" id="tos" name="tos" />
+
+            <span>
+              I accept the
+              <a href="tos.html" target="_blank">Terms of Service</a>
+              and
+              <a href="privacy.html" target="_blank">Privacy Policy</a>
+            </span>
+          </label>
+        </div>
+
+        <button type="submit" id="submitBtn">Login</button>
+      </form>
+
+      <p id="error-msg" class="error" role="alert" aria-live="assertive"></p>
+    </div>
+
+    <script type="module" src="auth.mjs"></script>
+  </body>
+</html>

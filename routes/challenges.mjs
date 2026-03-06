@@ -1,57 +1,60 @@
 import express from "express";
-import { validateChallenge } from "../validation-middleware/validateChallenge.mjs";
-
 import {
   createChallenge,
-  getAllChallenges,
-  updateChallenge,
+  getUserChallenges,
   completeChallenge,
   deleteChallenge,
 } from "../src/repositories/challengeRepository.mjs";
 
 const router = express.Router();
 
-// GET all
+// GET challenges for a user
 router.get("/", async (req, res) => {
-  const challenges = await getAllChallenges();
-  res.json(challenges);
-});
+  try {
+    const userId = req.query.userId;
 
-// CREATE
-router.post("/", validateChallenge, async (req, res) => {
-  const { title, description } = req.body;
+    if (!userId) {
+      return res.status(400).json({ error: "Missing userId" });
+    }
 
-  const challenge = await createChallenge(title, description);
-  res.status(201).json(challenge);
-});
+    const challenges = await getUserChallenges(userId);
 
-// UPDATE
-router.put("/:id", validateChallenge, async (req, res) => {
-  const { title, description } = req.body;
-
-  const updated = await updateChallenge(req.params.id, title, description);
-
-  if (!updated) {
-    return res.status(404).json({ error: "Challenge not found" });
+    res.json(challenges);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Could not fetch challenges" });
   }
-
-  res.json(updated);
 });
 
-// COMPLETE
+// CREATE challenge
+router.post("/", async (req, res) => {
+  try {
+    const { userId, title, challengeDate } = req.body;
+
+    if (!userId || !title || !challengeDate) {
+      return res.status(400).json({ error: "Missing data" });
+    }
+
+    const challenge = await createChallenge(userId, title, challengeDate);
+
+    res.status(201).json(challenge);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Could not create challenge" });
+  }
+});
+
+// COMPLETE challenge
 router.patch("/:id/complete", async (req, res) => {
-  const updated = await completeChallenge(req.params.id);
+  const challenge = await completeChallenge(req.params.id);
 
-  if (!updated) {
-    return res.status(404).json({ error: "Challenge not found" });
-  }
-
-  res.json(updated);
+  res.json(challenge);
 });
 
-// DELETE
+// DELETE challenge
 router.delete("/:id", async (req, res) => {
   await deleteChallenge(req.params.id);
+
   res.status(204).end();
 });
 

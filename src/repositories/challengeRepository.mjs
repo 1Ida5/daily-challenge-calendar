@@ -1,17 +1,24 @@
 import pool from "../db/connection.mjs";
 
-export async function createChallenge(title, description) {
+export async function createChallenge(userId, title, challengeDate) {
   const result = await pool.query(
-    "INSERT INTO challenges (title, description) VALUES ($1, $2) RETURNING *",
-    [title, description],
+    `INSERT INTO challenges (user_id, title, challenge_date)
+     VALUES ($1,$2,$3)
+     RETURNING *`,
+    [userId, title, challengeDate],
   );
+
   return result.rows[0];
 }
 
-export async function getAllChallenges() {
+export async function getUserChallenges(userId) {
   const result = await pool.query(
-    "SELECT * FROM challenges WHERE deleted_at IS NULL",
+    `SELECT * FROM challenges
+     WHERE user_id=$1 AND deleted_at IS NULL
+     ORDER BY challenge_date`,
+    [userId],
   );
+
   return result.rows;
 }
 

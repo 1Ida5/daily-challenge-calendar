@@ -2,23 +2,29 @@ import pool from "./connection.mjs";
 
 export async function initDatabase() {
   await pool.query(`
-    CREATE TABLE IF NOT EXISTS users (
-      id SERIAL PRIMARY KEY,
-      username VARCHAR(50) UNIQUE NOT NULL,
-      password VARCHAR(100) NOT NULL,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
+  CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
   `);
 
   console.log("Users table ready");
-}
 
-await pool.query(`
+  await pool.query(`
+  DROP TABLE IF EXISTS challenges;
+  `);
+
+  await pool.query(`
   CREATE TABLE IF NOT EXISTS challenges (
     id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     title VARCHAR(100) NOT NULL,
-    description TEXT,
+    challenge_date DATE,
+    completed BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP
   );
-`);
+  `);
+}

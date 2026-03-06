@@ -4,13 +4,17 @@ import { initDatabase } from "./src/db/init.mjs";
 
 import userRouter from "./routes/users.mjs";
 import challengeRouter from "./routes/challenges.mjs";
+import security from "./src/middleware/security.mjs";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
+app.use(security);
+
 app.use("/api/users", userRouter);
 app.use("/api/challenges", challengeRouter);
+
 app.use(express.static("public"));
 
 async function startServer() {
