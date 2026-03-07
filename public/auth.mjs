@@ -1,3 +1,32 @@
+const en = await fetch("./locales/en.json").then((r) => r.json());
+const no = await fetch("./locales/no.json").then((r) => r.json());
+
+const translations = { en, no };
+
+// detect browser language
+const browserLang = navigator.languages?.[0] || navigator.language || "en";
+
+// normalize language
+let lang = "en";
+
+if (
+  browserLang.startsWith("no") ||
+  browserLang.startsWith("nb") ||
+  browserLang.startsWith("nn")
+) {
+  lang = "no";
+}
+
+const t = translations[lang];
+
+// translate elements
+document.querySelectorAll("[data-i18n]").forEach((element) => {
+  const key = element.dataset.i18n;
+
+  if (t[key]) {
+    element.textContent = t[key];
+  }
+});
 const loginTab = document.getElementById("loginTab");
 const registerTab = document.getElementById("registerTab");
 
@@ -19,7 +48,7 @@ loginTab.onclick = () => {
 
   tosContainer.style.display = "none";
 
-  submitBtn.textContent = "Login";
+  submitBtn.textContent = t.login;
 };
 
 registerTab.onclick = () => {
@@ -30,7 +59,7 @@ registerTab.onclick = () => {
 
   tosContainer.style.display = "block";
 
-  submitBtn.textContent = "Create account";
+  submitBtn.textContent = t.createAccount;
 };
 
 form.addEventListener("submit", async (e) => {
@@ -48,10 +77,7 @@ form.addEventListener("submit", async (e) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
+        body: JSON.stringify({ username, password }),
       });
     } else {
       const acceptTos = document.getElementById("tos").checked;
@@ -80,6 +106,6 @@ form.addEventListener("submit", async (e) => {
 
     window.location.href = "dashboard.html";
   } catch (err) {
-    errorMsg.textContent = "Something went wrong";
+    errorMsg.textContent = t.genericError;
   }
 });

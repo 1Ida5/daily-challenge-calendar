@@ -1,0 +1,14 @@
+{
+  "title": "Daily Challenge",
+  "authDescription": "Login or create your account",
+  "login": "Login",
+  "register": "Register",
+  "createAccount": "Create account",
+  "username": "Username",
+  "password": "Password",
+  "genericError": "Something went wrong",
+  "accept": "I accept the",
+  "tos": "Terms of Service",
+  "and": "and",
+  "privacy": "Privacy Policy"
+}

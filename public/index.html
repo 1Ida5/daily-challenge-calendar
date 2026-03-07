@@ -1,15 +1,19 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Daily Challenge</title>
+    <title data-i18n="title">Daily Challenge</title>
     <link rel="stylesheet" href="app.css" />
   </head>
 
   <body>
     <div class="auth-container">
-      <h1>Daily Challenge</h1>
-      <p id="auth-description">Login or create your account</p>
+      <h1 data-i18n="title">Daily Challenge</h1>
+
+      <p id="auth-description" data-i18n="authDescription">
+        Login or create your account
+      </p>
 
       <div class="auth-tabs" role="tablist">
         <button
@@ -18,6 +22,7 @@
           role="tab"
           aria-selected="true"
           aria-controls="auth-form"
+          data-i18n="login"
         >
           Login
         </button>
@@ -27,13 +32,14 @@
           role="tab"
           aria-selected="false"
           aria-controls="auth-form"
+          data-i18n="register"
         >
           Register
         </button>
       </div>
 
       <form id="auth-form" aria-describedby="auth-description">
-        <label for="username">Username</label>
+        <label for="username" data-i18n="username">Username</label>
         <input
           id="username"
           name="username"
@@ -42,7 +48,7 @@
           autocomplete="username"
         />
 
-        <label for="password">Password</label>
+        <label for="password" data-i18n="password">Password</label>
         <input
           id="password"
           name="password"
@@ -55,16 +61,23 @@
           <label class="tos-label">
             <input type="checkbox" id="tos" name="tos" />
 
-            <span>
-              I accept the
-              <a href="tos.html" target="_blank">Terms of Service</a>
-              and
-              <a href="privacy.html" target="_blank">Privacy Policy</a>
-            </span>
+            <span data-i18n="accept">I accept the</span>
+            <a href="tos.html" target="_blank" rel="noopener" data-i18n="tos">
+              Terms of Service
+            </a>
+            <span data-i18n="and">and</span>
+            <a
+              href="privacy.html"
+              target="_blank"
+              rel="noopener"
+              data-i18n="privacy"
+            >
+              Privacy Policy
+            </a>
           </label>
         </div>
 
-        <button type="submit" id="submitBtn">Login</button>
+        <button type="submit" id="submitBtn" data-i18n="login">Login</button>
       </form>
 
       <p id="error-msg" class="error" role="alert" aria-live="assertive"></p>

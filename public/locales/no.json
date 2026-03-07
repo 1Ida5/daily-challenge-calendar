@@ -1,0 +1,14 @@
+{
+  "title": "Daglig utfordring",
+  "authDescription": "Logg inn eller opprett konto",
+  "login": "Logg inn",
+  "register": "Registrer",
+  "createAccount": "Opprett konto",
+  "username": "Brukernavn",
+  "password": "Passord",
+  "genericError": "Noe gikk galt",
+  "accept": "Jeg godtar",
+  "tos": "Vilkårene",
+  "and": "og",
+  "privacy": "Personvernerklæringen"
+}
