@@ -22,18 +22,22 @@ document.documentElement.lang = lang;
 document.querySelectorAll("[data-i18n]").forEach((element) => {
   const key = element.dataset.i18n;
 
-  if (t[key]) {
-    element.textContent = t[key];
-  }
+  if (t[key]) element.textContent = t[key];
 });
 
-document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
-  const key = element.dataset.i18nPlaceholder;
+const weekdayContainer = document.getElementById("weekdays");
 
-  if (t[key]) {
-    element.placeholder = t[key];
-  }
-});
+if (weekdayContainer && t.weekdays) {
+  weekdayContainer.innerHTML = "";
+
+  t.weekdays.forEach((day) => {
+    const div = document.createElement("div");
+
+    div.textContent = day;
+
+    weekdayContainer.appendChild(div);
+  });
+}
 
 const user = JSON.parse(sessionStorage.getItem("currentUser"));
 
@@ -45,6 +49,7 @@ document.getElementById("username").textContent = user.username;
 
 document.getElementById("logoutBtn").onclick = () => {
   sessionStorage.removeItem("currentUser");
+
   window.location.href = "/";
 };
 
@@ -76,6 +81,7 @@ async function loadChallenges() {
 
 function generateCalendar() {
   const date = new Date();
+
   const year = date.getFullYear();
   const month = date.getMonth();
 
@@ -93,6 +99,11 @@ function generateCalendar() {
 
   for (let i = 0; i < firstDay; i++) {
     const empty = document.createElement("div");
+
+    empty.className = "day";
+
+    empty.setAttribute("aria-hidden", "true");
+
     calendar.appendChild(empty);
   }
 
@@ -101,12 +112,14 @@ function generateCalendar() {
 
     cell.className = "day";
 
-    cell.setAttribute("role", "gridcell");
+    cell.setAttribute("role", "button");
+    cell.setAttribute("tabindex", "0");
     cell.setAttribute("aria-label", `Day ${day}`);
 
     const number = document.createElement("div");
 
     number.className = "day-number";
+
     number.textContent = day;
 
     cell.appendChild(number);

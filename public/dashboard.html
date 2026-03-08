@@ -2,9 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <title data-i18n="title">Daily Challenge</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <link rel="manifest" href="/manifest.json" />
+
     <link rel="stylesheet" href="./dashboard.css" />
   </head>
 
@@ -27,18 +31,10 @@
           Your Challenge Calendar
         </h2>
 
-        <!-- weekday header -->
-        <div class="weekdays">
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div>Sat</div>
-          <div>Sun</div>
-        </div>
+        <!-- weekdays -->
+        <div class="weekdays" id="weekdays" aria-hidden="true"></div>
 
-        <div id="calendar" role="grid" aria-label="Challenge calendar"></div>
+        <div id="calendar" aria-label="Challenge calendar"></div>
       </section>
 
       <section class="challenge-form">
@@ -46,9 +42,17 @@
           New challenge
         </label>
 
-        <input id="challengeInput" type="text" placeholder="" />
+        <input
+          id="challengeInput"
+          type="text"
+          aria-describedby="challengeHelp"
+        />
 
-        <button id="addChallenge" data-i18n="addChallenge">
+        <button
+          id="addChallenge"
+          data-i18n="addChallenge"
+          aria-label="Add challenge"
+        >
           Add challenge
         </button>
       </section>

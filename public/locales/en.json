@@ -15,5 +15,7 @@
   "calendarTitle": "Your Challenge Calendar",
   "newChallenge": "New challenge",
   "addChallenge": "Add challenge",
-  "logout": "Logout"
+  "logout": "Logout",
+
+  "weekdays": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 }

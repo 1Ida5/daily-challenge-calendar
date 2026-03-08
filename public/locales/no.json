@@ -15,5 +15,7 @@
   "calendarTitle": "Dine utfordringer",
   "newChallenge": "Ny utfordring",
   "addChallenge": "Legg til utfordring",
-  "logout": "Logg ut"
+  "logout": "Logg ut",
+
+  "weekdays": ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]
 }
