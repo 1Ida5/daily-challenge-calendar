@@ -109,3 +109,10 @@ form.addEventListener("submit", async (e) => {
     errorMsg.textContent = t.genericError;
   }
 });
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/service-worker.js")
+    .then(() => console.log("Service Worker registered"))
+    .catch((error) => console.log("Service Worker error:", error));
+}
