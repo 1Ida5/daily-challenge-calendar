@@ -79,20 +79,24 @@ function generateCalendar() {
   const year = date.getFullYear();
   const month = date.getMonth();
 
-  const firstDay = new Date(year, month, 1).getDay();
+  let firstDay = new Date(year, month, 1).getDay();
+
+  if (firstDay === 0) {
+    firstDay = 7;
+  }
+
+  firstDay = firstDay - 1;
+
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
   calendar.innerHTML = "";
 
-  let row;
+  for (let i = 0; i < firstDay; i++) {
+    const empty = document.createElement("div");
+    calendar.appendChild(empty);
+  }
 
   for (let day = 1; day <= daysInMonth; day++) {
-    if ((day - 1) % 7 === 0) {
-      row = document.createElement("div");
-      row.setAttribute("role", "row");
-      calendar.appendChild(row);
-    }
-
     const cell = document.createElement("div");
 
     cell.className = "day";
@@ -103,7 +107,6 @@ function generateCalendar() {
     const number = document.createElement("div");
 
     number.className = "day-number";
-
     number.textContent = day;
 
     cell.appendChild(number);
@@ -128,7 +131,7 @@ function generateCalendar() {
       cell.appendChild(p);
     });
 
-    row.appendChild(cell);
+    calendar.appendChild(cell);
   }
 }
 
