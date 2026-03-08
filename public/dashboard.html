@@ -1,19 +1,59 @@
-<body>
-  <h1>challenge calendar</h1>
-  <p style="font-weight: bolder">welcome to the challenge calendar app!</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title data-i18n="title">Daily Challenge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
 
-  <user-form></user-form>
-  <user-list></user-list>
+  <body>
+    <header class="topbar">
+      <h1 data-i18n="title">Daily Challenge</h1>
 
-  <script src="./app.mjs" type="module"></script>
+      <nav aria-label="User menu">
+        <span id="username"></span>
 
-  <h1>Your challenges</h1>
+        <button id="logoutBtn" data-i18n="logout" aria-label="Logout">
+          Logout
+        </button>
+      </nav>
+    </header>
 
-  <div id="calendar"></div>
+    <main class="dashboard-container">
+      <section aria-labelledby="calendar-heading">
+        <h2 id="calendar-heading" data-i18n="calendarTitle">
+          Your Challenge Calendar
+        </h2>
 
-  <input id="challengeInput" placeholder="New challenge" />
+        <!-- weekday header -->
+        <div class="weekdays">
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+          <div>Sun</div>
+        </div>
 
-  <button id="addChallenge">Add challenge</button>
+        <div id="calendar" role="grid" aria-label="Challenge calendar"></div>
+      </section>
 
-  <script type="module" src="dashboard.mjs"></script>
-</body>
+      <section class="challenge-form">
+        <label for="challengeInput" data-i18n="newChallenge">
+          New challenge
+        </label>
+
+        <input id="challengeInput" type="text" placeholder="" />
+
+        <button id="addChallenge" data-i18n="addChallenge">
+          Add challenge
+        </button>
+      </section>
+    </main>
+
+    <script type="module" src="./dashboard.mjs"></script>
+  </body>
+</html>

@@ -10,5 +10,10 @@
   "accept": "Jeg godtar",
   "tos": "Vilkårene",
   "and": "og",
-  "privacy": "Personvernerklæringen"
+  "privacy": "Personvernerklæringen",
+
+  "calendarTitle": "Dine utfordringer",
+  "newChallenge": "Ny utfordring",
+  "addChallenge": "Legg til utfordring",
+  "logout": "Logg ut"
 }

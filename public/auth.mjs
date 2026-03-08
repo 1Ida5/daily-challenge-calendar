@@ -3,10 +3,8 @@ const no = await fetch("./locales/no.json").then((r) => r.json());
 
 const translations = { en, no };
 
-// detect browser language
 const browserLang = navigator.languages?.[0] || navigator.language || "en";
 
-// normalize language
 let lang = "en";
 
 if (
@@ -19,7 +17,6 @@ if (
 
 const t = translations[lang];
 
-// translate elements
 document.querySelectorAll("[data-i18n]").forEach((element) => {
   const key = element.dataset.i18n;
 

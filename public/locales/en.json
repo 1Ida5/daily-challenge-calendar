@@ -10,5 +10,10 @@
   "accept": "I accept the",
   "tos": "Terms of Service",
   "and": "and",
-  "privacy": "Privacy Policy"
+  "privacy": "Privacy Policy",
+
+  "calendarTitle": "Your Challenge Calendar",
+  "newChallenge": "New challenge",
+  "addChallenge": "Add challenge",
+  "logout": "Logout"
 }
