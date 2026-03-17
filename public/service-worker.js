@@ -8,8 +8,8 @@ const urlsToCache = [
   "/app.mjs",
   "/auth.mjs",
   "/dashboard.mjs",
-  "/locales/en.json",
-  "/locales/no.json",
+  "/localization/en.json",
+  "/localization/no.json",
 ];
 
 self.addEventListener("install", (event) => {

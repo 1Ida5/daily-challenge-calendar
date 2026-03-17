@@ -9,7 +9,6 @@ import {
 
 const router = express.Router();
 
-// LOGIN
 router.post("/login", async (req, res) => {
   try {
     const { username } = req.body;
@@ -40,7 +39,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// GET ALL USERS
 router.get("/", async (req, res) => {
   try {
     const users = await getAllUsers();
@@ -57,7 +55,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// CREATE USER
 router.post("/", async (req, res) => {
   try {
     const { username, acceptTos } = req.body;
@@ -94,7 +91,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// UPDATE USER
 router.put("/:id", async (req, res) => {
   try {
     const { username } = req.body;
@@ -118,7 +114,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE USER
 router.delete("/:id", async (req, res) => {
   try {
     await deleteUser(req.params.id);

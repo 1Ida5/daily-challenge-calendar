@@ -4,7 +4,7 @@ import { initDatabase } from "./src/db/init.mjs";
 
 import userRouter from "./routes/users.mjs";
 import challengeRouter from "./routes/challenges.mjs";
-import security from "./src/middleware/security.mjs";
+import security from "./src/security/security.mjs";
 
 const app = express();
 const PORT = process.env.PORT || 8080;

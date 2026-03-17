@@ -8,7 +8,6 @@ import {
 
 const router = express.Router();
 
-// GET challenges for a user
 router.get("/", async (req, res) => {
   try {
     const userId = req.query.userId;
@@ -26,7 +25,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// CREATE challenge
 router.post("/", async (req, res) => {
   try {
     const { userId, title, challengeDate } = req.body;
@@ -44,14 +42,12 @@ router.post("/", async (req, res) => {
   }
 });
 
-// COMPLETE challenge
 router.patch("/:id/complete", async (req, res) => {
   const challenge = await completeChallenge(req.params.id);
 
   res.json(challenge);
 });
 
-// DELETE challenge
 router.delete("/:id", async (req, res) => {
   await deleteChallenge(req.params.id);
 

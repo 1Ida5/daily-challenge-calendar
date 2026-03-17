@@ -1,5 +1,5 @@
-const en = await fetch("./locales/en.json").then((r) => r.json());
-const no = await fetch("./locales/no.json").then((r) => r.json());
+const en = await fetch("./localization/en.json").then((r) => r.json());
+const no = await fetch("./localization/no.json").then((r) => r.json());
 
 const translations = { en, no };
 
