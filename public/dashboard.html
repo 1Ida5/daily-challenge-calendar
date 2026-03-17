@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -16,6 +17,12 @@
     <header class="topbar">
       <h1 data-i18n="title">Daily Challenge</h1>
 
+      <div class="calendar-nav">
+        <button id="prevMonth">←</button>
+        <span id="monthLabel"></span>
+        <button id="nextMonth">→</button>
+      </div>
+
       <nav aria-label="User menu">
         <span id="username"></span>
 
@@ -31,30 +38,18 @@
           Your Challenge Calendar
         </h2>
 
-        <!-- weekdays -->
-        <div class="weekdays" id="weekdays" aria-hidden="true"></div>
+        <section class="challenge-form">
+          <label for="challengeInput" data-i18n="newChallenge">
+            New challenge
+          </label>
 
-        <div id="calendar" aria-label="Challenge calendar"></div>
-      </section>
+          <input id="challengeInput" type="text" />
 
-      <section class="challenge-form">
-        <label for="challengeInput" data-i18n="newChallenge">
-          New challenge
-        </label>
+          <button id="addChallenge">Add challenge</button>
+        </section>
 
-        <input
-          id="challengeInput"
-          type="text"
-          aria-describedby="challengeHelp"
-        />
-
-        <button
-          id="addChallenge"
-          data-i18n="addChallenge"
-          aria-label="Add challenge"
-        >
-          Add challenge
-        </button>
+        <div class="weekdays" id="weekdays"></div>
+        <div id="calendar"></div>
       </section>
     </main>
 

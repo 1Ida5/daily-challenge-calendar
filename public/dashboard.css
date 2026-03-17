@@ -27,6 +27,39 @@ body {
   max-width: 1100px;
   margin: 40px auto;
   padding: 0 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.challenge-form {
+  width: 100%;
+  max-width: 600px;
+
+  margin-bottom: 25px;
+
+  display: flex;
+  gap: 10px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.challenge-form input {
+  flex: 1;
+  padding: 10px;
+}
+
+.challenge-form button {
+  padding: 10px 16px;
+
+  background: #3b3bbd;
+  color: white;
+
+  border: none;
+  border-radius: 4px;
+
+  cursor: pointer;
 }
 
 .weekdays {
@@ -34,16 +67,21 @@ body {
   grid-template-columns: repeat(7, 1fr);
   gap: 10px;
 
-  margin-top: 20px;
+  margin-top: 10px;
   font-weight: bold;
   text-align: center;
+
+  width: 100%;
 }
 
 #calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 10px;
+
   margin-top: 10px;
+
+  width: 100%;
 }
 
 .day {
@@ -70,29 +108,19 @@ body {
   font-size: 14px;
 }
 
-.challenge-form {
-  margin-top: 30px;
-
+.calendar-nav {
   display: flex;
-  gap: 10px;
-
+  justify-content: center;
   align-items: center;
+  gap: 15px;
+  margin: 10px 0;
 }
 
-.challenge-form input {
-  flex: 1;
-
-  padding: 8px;
-}
-
-.challenge-form button {
-  padding: 8px 14px;
-
-  background: #3b3bbd;
-  color: white;
-
-  border: none;
-  border-radius: 4px;
-
+.calendar-nav button {
+  padding: 6px 10px;
   cursor: pointer;
+}
+
+.today {
+  border: 2px solid #3b3bbd;
 }

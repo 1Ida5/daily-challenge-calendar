@@ -10,12 +10,6 @@ export async function initDatabase() {
   );
   `);
 
-  console.log("Users table ready");
-
-  await pool.query(`
-  DROP TABLE IF EXISTS challenges;
-  `);
-
   await pool.query(`
   CREATE TABLE IF NOT EXISTS challenges (
     id SERIAL PRIMARY KEY,
