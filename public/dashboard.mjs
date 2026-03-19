@@ -60,9 +60,9 @@ document.getElementById("logoutBtn").onclick = () => {
 };
 
 const calendar = document.getElementById("calendar");
+const monthLabel = document.getElementById("monthLabel");
 const input = document.getElementById("challengeInput");
 const button = document.getElementById("addChallenge");
-const monthLabel = document.getElementById("monthLabel");
 
 function updateMonthLabel() {
   const options = { month: "long", year: "numeric" };
@@ -76,16 +76,6 @@ function updateMonthLabel() {
 }
 
 let challengesData = [];
-
-function randomDateWithinWeek() {
-  const today = new Date();
-  const randomDays = Math.floor(Math.random() * 7) + 1;
-
-  const randomDate = new Date(today);
-  randomDate.setDate(today.getDate() + randomDays);
-
-  return randomDate.toISOString().slice(0, 10);
-}
 
 async function loadChallenges() {
   const res = await fetch(`/api/challenges?userId=${user.id}`);
@@ -114,11 +104,49 @@ function generateCalendar() {
   }
 
   for (let day = 1; day <= daysInMonth; day++) {
+    const dateString = `${year}-${String(month + 1).padStart(
+      2,
+      "0",
+    )}-${String(day).padStart(2, "0")}`;
+
     const cell = document.createElement("div");
     cell.className = "day";
 
-    const today = new Date();
+    cell.onclick = () => {
+      const existingInput = document.querySelector(".day input");
+      if (existingInput) existingInput.remove();
 
+      const inputField = document.createElement("input");
+      inputField.placeholder = t.newChallenge || "Add...";
+      inputField.style.width = "100%";
+      inputField.style.marginTop = "5px";
+
+      inputField.onkeydown = async (e) => {
+        if (e.key === "Enter") {
+          const title = inputField.value;
+          if (!title) return;
+
+          await fetch("/api/challenges", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userId: user.id,
+              title,
+              challengeDate: dateString,
+            }),
+          });
+
+          loadChallenges();
+        }
+      };
+
+      cell.appendChild(inputField);
+      inputField.focus();
+    };
+
+    const today = new Date();
     if (
       day === today.getDate() &&
       month === today.getMonth() &&
@@ -133,13 +161,9 @@ function generateCalendar() {
 
     cell.appendChild(number);
 
-    const dateString = `${year}-${String(month + 1).padStart(
-      2,
-      "0",
-    )}-${String(day).padStart(2, "0")}`;
-
     const dayChallenges = challengesData.filter((c) => {
-      const challengeDate = (c.challenge_date || c.challengeDate).split("T")[0];
+      const rawDate = c.challenge_date || c.challengeDate;
+      const challengeDate = new Date(rawDate).toLocaleDateString("en-CA");
       return challengeDate === dateString;
     });
 
@@ -162,15 +186,23 @@ button.onclick = async () => {
   const title = input.value;
   if (!title) return;
 
-  const date = randomDateWithinWeek();
+  const today = new Date();
+  const randomDaysAhead = Math.floor(Math.random() * 7) + 1;
+
+  const futureDate = new Date(today);
+  futureDate.setDate(today.getDate() + randomDaysAhead);
+
+  const randomDate = futureDate.toISOString().split("T")[0];
 
   await fetch("/api/challenges", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       userId: user.id,
       title,
-      challengeDate: date,
+      challengeDate: randomDate,
     }),
   });
 

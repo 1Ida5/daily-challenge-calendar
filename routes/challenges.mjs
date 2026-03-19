@@ -1,4 +1,5 @@
 import express from "express";
+import { validateChallenge } from "../validation/validateChallenge.mjs";
 import {
   createChallenge,
   getUserChallenges,
@@ -25,7 +26,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", validateChallenge, async (req, res) => {
   try {
     const { userId, title, challengeDate } = req.body;
 
@@ -43,15 +44,23 @@ router.post("/", async (req, res) => {
 });
 
 router.patch("/:id/complete", async (req, res) => {
-  const challenge = await completeChallenge(req.params.id);
-
-  res.json(challenge);
+  try {
+    const challenge = await completeChallenge(req.params.id);
+    res.json(challenge);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Could not update challenge" });
+  }
 });
 
 router.delete("/:id", async (req, res) => {
-  await deleteChallenge(req.params.id);
-
-  res.status(204).end();
+  try {
+    await deleteChallenge(req.params.id);
+    res.status(204).end();
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Could not delete challenge" });
+  }
 });
 
 export default router;

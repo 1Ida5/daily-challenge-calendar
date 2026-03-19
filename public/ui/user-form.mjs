@@ -33,7 +33,6 @@ class UserForm extends HTMLElement {
         acceptTos: form.acceptTos.checked,
       };
 
-      // ✅ Frontend validation
       if (!user.acceptTos) {
         alert("You must accept the Terms of Service.");
         return;
