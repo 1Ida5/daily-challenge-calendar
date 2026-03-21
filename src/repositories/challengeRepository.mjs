@@ -32,7 +32,7 @@ export async function updateChallenge(id, title, description) {
 
 export async function completeChallenge(id) {
   const result = await pool.query(
-    "UPDATE challenges SET completed = TRUE WHERE id = $1 RETURNING *",
+    "UPDATE challenges SET completed = NOT completed WHERE id = $1 RETURNING *",
     [id],
   );
   return result.rows[0];

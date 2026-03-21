@@ -171,9 +171,51 @@ function generateCalendar() {
       const p = document.createElement("p");
       p.textContent = challenge.title;
 
+      p.style.cursor = "pointer";
+
+      const rawDate = challenge.challenge_date || challenge.challengeDate;
+      const challengeDateObj = new Date(rawDate);
+      const today = new Date();
+
+      const isPast = challengeDateObj < today && !challenge.completed;
+
       if (challenge.completed) {
         p.style.textDecoration = "line-through";
+        p.style.opacity = "0.6";
       }
+
+      if (isPast) {
+        p.style.background = "#ffe5e5";
+        p.style.color = "#b00020";
+      }
+
+      let clickTimeout;
+
+      p.onclick = (e) => {
+        e.stopPropagation();
+
+        clickTimeout = setTimeout(async () => {
+          await fetch(`/api/challenges/${challenge.id}/complete`, {
+            method: "PATCH",
+          });
+
+          loadChallenges();
+        }, 200);
+      };
+
+      p.ondblclick = async (e) => {
+        e.stopPropagation();
+
+        clearTimeout(clickTimeout);
+
+        if (!confirm("Delete challenge?")) return;
+
+        await fetch(`/api/challenges/${challenge.id}`, {
+          method: "DELETE",
+        });
+
+        loadChallenges();
+      };
 
       cell.appendChild(p);
     });
