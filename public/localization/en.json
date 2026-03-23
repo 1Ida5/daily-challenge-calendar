@@ -13,9 +13,25 @@
   "privacy": "Privacy Policy",
 
   "calendarTitle": "Your Challenge Calendar",
-  "newChallenge": "New challenge",
+  "newChallenge": "New random challenge",
   "addChallenge": "Add challenge",
   "logout": "Logout",
+  "help": "Help",
+
+  "profile": "Profile",
+  "completed": "Completed",
+  "missed": "Missed",
+  "deleted": "Deleted",
+
+  "selectDateFirst": "Select a date first!",
+
+  "helpTitle": "How it works",
+  "help1": "Click a day → add your own challenge",
+  "help2": "Press Enter to save",
+  "help3": "Use 'Add challenge' for a random challenge",
+  "help4": "Click once to complete",
+  "help5": "Double click to delete",
+  "close": "Close",
 
   "weekdays": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 }

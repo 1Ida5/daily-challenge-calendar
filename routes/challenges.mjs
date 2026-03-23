@@ -5,6 +5,7 @@ import {
   getUserChallenges,
   completeChallenge,
   deleteChallenge,
+  getAllChallenges,
 } from "../src/repositories/challengeRepository.mjs";
 
 const router = express.Router();
@@ -26,13 +27,22 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/all", async (req, res) => {
+  try {
+    const userId = req.query.userId;
+
+    const challenges = await getAllChallenges(userId);
+
+    res.json(challenges);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Could not fetch all challenges" });
+  }
+});
+
 router.post("/", validateChallenge, async (req, res) => {
   try {
     const { userId, title, challengeDate } = req.body;
-
-    if (!userId || !title || !challengeDate) {
-      return res.status(400).json({ error: "Missing data" });
-    }
 
     const challenge = await createChallenge(userId, title, challengeDate);
 

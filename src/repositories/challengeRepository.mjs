@@ -43,3 +43,11 @@ export async function deleteChallenge(id) {
     id,
   ]);
 }
+
+export async function getAllChallenges(userId) {
+  const result = await pool.query(
+    "SELECT * FROM challenges WHERE user_id = $1",
+    [userId],
+  );
+  return result.rows;
+}

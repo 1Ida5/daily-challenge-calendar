@@ -83,6 +83,39 @@ async function loadChallenges() {
 
   generateCalendar();
 }
+async function loadAllChallenges() {
+  const res = await fetch(`/api/challenges/all?userId=${user.id}`);
+  return await res.json();
+  async function loadAllChallenges() {
+    const res = await fetch(`/api/challenges/all?userId=${user.id}`);
+
+    if (!res.ok) {
+      console.error("Failed to load all challenges");
+      return [];
+    }
+
+    return await res.json();
+  }
+}
+
+function calculateStats(allChallenges) {
+  const now = new Date();
+
+  const completed = allChallenges.filter((c) => c.completed && !c.deleted_at);
+
+  const deleted = allChallenges.filter((c) => c.deleted_at);
+
+  const missed = allChallenges.filter((c) => {
+    const date = new Date(c.challenge_date);
+    return date < now && !c.completed && !c.deleted_at;
+  });
+
+  return {
+    completed: completed.length,
+    missed: missed.length,
+    deleted: deleted.length,
+  };
+}
 
 function generateCalendar() {
   const year = currentDate.getFullYear();
@@ -265,6 +298,36 @@ document.getElementById("nextMonth").onclick = () => {
   currentDate.setMonth(currentDate.getMonth() + 1);
   generateCalendar();
   updateMonthLabel();
+};
+
+document.getElementById("profileBtn").onclick = async () => {
+  const all = await loadAllChallenges();
+
+  const stats = calculateStats(all);
+
+  document.getElementById("completedCount").textContent =
+    t.completed + ": " + stats.completed;
+
+  document.getElementById("missedCount").textContent =
+    t.missed + ": " + stats.missed;
+
+  document.getElementById("deletedCount").textContent =
+    t.deleted + ": " + stats.deleted;
+
+  document.getElementById("profilePopup").classList.toggle("hidden");
+};
+
+const helpBtn = document.getElementById("helpBtn");
+const helpPopup = document.getElementById("helpPopup");
+const closeHelp = document.getElementById("closeHelp");
+
+helpBtn.addEventListener("click", () => {
+  helpPopup.classList.toggle("hidden");
+  document.getElementById("profilePopup").classList.add("hidden");
+});
+
+closeHelp.onclick = () => {
+  helpPopup.classList.add("hidden");
 };
 
 if ("serviceWorker" in navigator) {
