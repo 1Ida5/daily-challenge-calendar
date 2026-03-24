@@ -29,8 +29,8 @@
   "help1": "Click a day → add your own challenge",
   "help2": "Press Enter to save",
   "help3": "Use 'Add challenge' for a random challenge",
-  "help4": "Click once to complete",
-  "help5": "Double click to delete",
+  "help4": "Click a challenge to mark it as done",
+  "help5": "Double click a challenge to delete it",
   "close": "Close",
 
   "weekdays": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]

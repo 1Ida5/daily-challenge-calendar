@@ -4,12 +4,15 @@ const urlsToCache = [
   "/",
   "/index.html",
   "/dashboard.html",
-  "/app.css",
-  "/app.mjs",
-  "/auth.mjs",
-  "/dashboard.mjs",
-  "/localization/en.json",
-  "/localization/no.json",
+
+  "/css/app.css",
+  "/css/dashboard.css",
+
+  "/js/auth.js",
+  "/js/dashboard.js",
+  "/js/api/challengeapi.js",
+  "/js/ui/calendar.js",
+  "/js/utils/i18n.js",
 ];
 
 self.addEventListener("install", (event) => {

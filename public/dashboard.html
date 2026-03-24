@@ -10,7 +10,7 @@
 
     <link rel="manifest" href="/manifest.json" />
 
-    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./css/dashboard.css" />
   </head>
 
   <body>
@@ -32,23 +32,29 @@
       </nav>
     </header>
 
-    <div id="profilePopup" class="hidden">
-      <h3 data-i18n="profile"></h3>
-      <p id="completedCount"></p>
-      <p id="missedCount"></p>
-      <p id="deletedCount"></p>
-    </div>
+   <dialog id="profileDialog">
+  <h3 data-i18n="profile"></h3>
 
-    <div id="helpPopup" class="popup hidden">
-      <h3 data-i18n="helpTitle"></h3>
+  <p id="completedCount"></p>
+  <p id="missedCount"></p>
+  <p id="deletedCount"></p>
 
-      <p data-i18n="help1"></p>
-      <p data-i18n="help2"></p>
-      <p data-i18n="help3"></p>
-      <p data-i18n="help4"></p>
-      <p data-i18n="help5"></p>
+  <button id="closeProfile" data-i18n="close"></button>
+</dialog>
 
-      <button id="closeHelp" data-i18n="close"></button>
+    <dialog id="helpDialog">
+  <h3 data-i18n="helpTitle"></h3>
+
+  <ul>
+    <li data-i18n="help1"></li>
+    <li data-i18n="help2"></li>
+    <li data-i18n="help3"></li>
+    <li data-i18n="help4"></li>
+    <li data-i18n="help5"></li>
+  </ul>
+
+  <button id="closeHelp" data-i18n="close"></button>
+</dialog>
     </div>
 
     <main class="dashboard-container">
@@ -70,6 +76,6 @@
       </section>
     </main>
 
-    <script type="module" src="./dashboard.mjs"></script>
+    <script type="module" src="./js/dashboard.js"></script>
   </body>
 </html>

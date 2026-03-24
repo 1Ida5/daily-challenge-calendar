@@ -1,29 +1,7 @@
-const en = await fetch("./localization/en.json").then((r) => r.json());
-const no = await fetch("./localization/no.json").then((r) => r.json());
+import { loadLanguage } from "./utils/i18n.js";
 
-const translations = { en, no };
+const { t } = await loadLanguage();
 
-const browserLang = navigator.languages?.[0] || navigator.language || "en";
-
-let lang = "en";
-
-if (
-  browserLang.startsWith("no") ||
-  browserLang.startsWith("nb") ||
-  browserLang.startsWith("nn")
-) {
-  lang = "no";
-}
-
-const t = translations[lang];
-
-document.querySelectorAll("[data-i18n]").forEach((element) => {
-  const key = element.dataset.i18n;
-
-  if (t[key]) {
-    element.textContent = t[key];
-  }
-});
 const loginTab = document.getElementById("loginTab");
 const registerTab = document.getElementById("registerTab");
 
@@ -62,6 +40,8 @@ registerTab.onclick = () => {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  errorMsg.textContent = "";
+
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
@@ -95,7 +75,8 @@ form.addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (!response.ok) {
-      errorMsg.textContent = data.error;
+      errorMsg.textContent = data.error || t.genericError;
+      errorMsg.style.display = "block";
       return;
     }
 
@@ -104,12 +85,13 @@ form.addEventListener("submit", async (e) => {
     window.location.href = "dashboard.html";
   } catch (err) {
     errorMsg.textContent = t.genericError;
+    errorMsg.style.display = "block";
   }
 });
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("/service-worker.js")
+    .register("/js/service-worker.js")
     .then(() => console.log("Service Worker registered"))
     .catch((error) => console.log("Service Worker error:", error));
 }

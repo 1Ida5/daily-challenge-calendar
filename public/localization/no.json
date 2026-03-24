@@ -26,11 +26,11 @@
   "selectDateFirst": "Velg en dato først!",
 
   "helpTitle": "Hvordan det fungerer",
-  "help1": "Klikk på en dag - legg til egen utfordring",
+  "help1": "Klikk på en dag → legg til egen utfordring",
   "help2": "Trykk Enter for å lagre",
   "help3": "Bruk 'Legg til' for tilfeldig",
-  "help4": "Klikk en gang for å fullføre",
-  "help5": "Dobbeltklikk for å slette",
+  "help4": "Klikk på en utfordring for å markere den som fullført",
+  "help5": "Dobbeltklikk på en utfordring for å slette den",
   "close": "Lukk",
 
   "weekdays": ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]
