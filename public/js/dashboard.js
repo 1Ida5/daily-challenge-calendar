@@ -134,6 +134,32 @@ helpBtn.onclick = () => {
 closeHelp.onclick = () => helpDialog.close();
 closeProfile.onclick = () => profileDialog.close();
 
+const deleteBtn = document.getElementById("deleteUserBtn");
+
+if (deleteBtn) {
+  deleteBtn.onclick = async () => {
+    const confirmDelete = confirm(t.confirmDelete + " " + user.username + "?");
+
+    if (!confirmDelete) return;
+
+    try {
+      const res = await fetch(`/api/users/${user.id}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) throw new Error();
+
+      alert(t.accountDeleted);
+
+      sessionStorage.removeItem("currentUser");
+      window.location.href = "/";
+    } catch (err) {
+      console.error(err);
+      alert(t.failedToDeleteAccount);
+    }
+  };
+}
+
 load();
 
 if ("serviceWorker" in navigator) {

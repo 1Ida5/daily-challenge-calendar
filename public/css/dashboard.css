@@ -193,6 +193,31 @@ dialog button:hover {
   opacity: 0.85;
 }
 
+#profileDialog div {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#logoutBtn {
+  background-color: #f1c40f;
+  color: black;
+}
+
+#logoutBtn:hover {
+  background-color: #d4ac0d;
+}
+
+#deleteUserBtn {
+  background-color: #e9200a;
+  color: white;
+  font-weight: bold;
+}
+
+#deleteUserBtn:hover {
+  background-color: #c0392b;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

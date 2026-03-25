@@ -58,7 +58,7 @@ export function renderCalendar(
       inputField.focus();
     };
 
-    addChallenges(cell, challengesData, dateString, reload);
+    addChallenges(cell, challengesData, dateString, reload, t);
 
     highlightToday(cell, day, month, year);
 
@@ -96,7 +96,7 @@ function highlightToday(cell, day, month, year) {
   }
 }
 
-function addChallenges(cell, data, dateString, reload) {
+function addChallenges(cell, data, dateString, reload, t) {
   const filtered = data.filter((c) => {
     const d = new Date(c.challenge_date).toLocaleDateString("en-CA");
     return d === dateString;
@@ -131,7 +131,8 @@ function addChallenges(cell, data, dateString, reload) {
 
     p.ondblclick = async () => {
       clearTimeout(clickTimeout);
-      if (!confirm("Delete challenge?")) return;
+
+      if (!confirm(t.confirmDeleteChallenge)) return;
 
       await deleteChallenge(challenge.id);
       reload();

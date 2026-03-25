@@ -119,3 +119,13 @@ label {
   margin-top: 10px;
   font-size: 14px;
 }
+
+.challenge-completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.challenge-missed {
+  background: #f8d7da;
+  color: #b00020;
+}

@@ -16,7 +16,13 @@
   "newChallenge": "Ny tilfeldig utfordring",
   "addChallenge": "Legg til",
   "logout": "Logg ut",
+  "deleteUser": "Slett konto",
   "help": "Hjelp",
+
+  "confirmDelete": "Er du sikker på at du vil slette kontoen din?",
+  "accountDeleted": "Konto slettet",
+  "failedToDeleteAccount": "Feil ved sletting av konto",
+  "confirmDeleteChallenge": "Er du sikker på at du vil slette denne utfordringen?",
 
   "profile": "Profil",
   "completed": "Fullført",

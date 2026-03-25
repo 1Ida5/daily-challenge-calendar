@@ -16,7 +16,13 @@
   "newChallenge": "New random challenge",
   "addChallenge": "Add challenge",
   "logout": "Logout",
+  "deleteUser": "Delete account",
   "help": "Help",
+
+  "confirmDelete": "Are you sure you want to delete your account?",
+  "accountDeleted": "Account deleted",
+  "failedToDeleteAccount": "Failed to delete account",
+  "confirmDeleteChallenge": "Are you sure you want to delete this challenge?",
 
   "profile": "Profile",
   "completed": "Completed",

@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const users = await getAllUsers();
-
+    console.log("ALL USERS:", users);
     const safeUsers = users.map((user) => {
       delete user.password;
       return user;
@@ -116,7 +116,13 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    await deleteUser(req.params.id);
+    const userId = Number(req.params.id);
+
+    if (!userId) {
+      return res.status(400).json({ error: "Invalid user id" });
+    }
+
+    await deleteUser(userId);
 
     res.status(204).end();
   } catch (err) {
@@ -125,6 +131,7 @@ router.delete("/:id", async (req, res) => {
       error: "Could not delete user",
     });
   }
+  s;
 });
 
 export default router;
