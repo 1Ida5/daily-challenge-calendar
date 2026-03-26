@@ -204,7 +204,7 @@ load();
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("/js/service-worker.js")
+    .register("/service-worker.js")
     .then(() => console.log("Service Worker registered"))
     .catch((err) => console.log("Service Worker error:", err));
 }
