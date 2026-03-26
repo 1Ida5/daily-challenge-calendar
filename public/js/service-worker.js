@@ -1,4 +1,4 @@
-const CACHE_NAME = "daily-challenge-v1";
+const CACHE_NAME = "daily-challenge-v2";
 
 const urlsToCache = [
   "/",
@@ -18,10 +18,13 @@ const urlsToCache = [
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log("Caching files");
       return cache.addAll(urlsToCache);
     }),
   );
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(self.clients.claim());
 });
 
 self.addEventListener("fetch", (event) => {
@@ -42,5 +45,13 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  event.respondWith(caches.match(req).then((res) => res || fetch(req)));
+  event.respondWith(
+    fetch(req)
+      .then((res) => res)
+      .catch(() => {
+        return caches.match(req).then((res) => {
+          return res || caches.match("/dashboard.html");
+        });
+      }),
+  );
 });
