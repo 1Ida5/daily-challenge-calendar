@@ -97,6 +97,22 @@ function updateMonthLabel() {
 }
 
 async function load() {
+  function renderWeekdays() {
+    const weekdays = document.getElementById("weekdays");
+
+    weekdays.innerHTML = "";
+
+    const days = t.weekdays;
+
+    days.forEach((day) => {
+      const div = document.createElement("div");
+      div.textContent = day;
+      weekdays.appendChild(div);
+    });
+  }
+
+  renderWeekdays();
+
   challengesData = await getChallenges(user.id);
 
   renderCalendar(calendar, challengesData, currentDate, t, load, user.id);
