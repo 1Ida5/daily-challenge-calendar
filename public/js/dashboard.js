@@ -101,6 +101,18 @@ async function load() {
 
   renderCalendar(calendar, challengesData, currentDate, t, load, user.id);
 
+  if ("caches" in window) {
+    caches.open("daily-challenge-v3").then(async (cache) => {
+      try {
+        const res = await fetch("/dashboard.html");
+        if (res.ok) {
+          await cache.put("/dashboard.html", res.clone());
+        }
+      } catch (err) {
+        console.error("Failed to cache dashboard:", err);
+      }
+    });
+  }
   updateMonthLabel();
 }
 

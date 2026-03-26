@@ -3,7 +3,6 @@ const CACHE_NAME = "daily-challenge-v2";
 const urlsToCache = [
   "/",
   "/index.html",
-  "/dashboard.html",
 
   "/css/app.css",
   "/css/dashboard.css",
@@ -50,7 +49,7 @@ self.addEventListener("fetch", (event) => {
       .then((res) => res)
       .catch(() => {
         return caches.match(req).then((res) => {
-          return res || caches.match("/dashboard.html");
+          return res || caches.match("/index.html");
         });
       }),
   );
