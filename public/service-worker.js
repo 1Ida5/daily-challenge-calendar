@@ -46,6 +46,21 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const req = event.request;
 
+  if (req.url.includes("/api/challenges")) {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(req, clone);
+          });
+          return res;
+        })
+        .catch(() => caches.match(req)),
+    );
+    return;
+  }
+
   if (req.method !== "GET") return;
 
   if (req.url.includes("/api/")) {
