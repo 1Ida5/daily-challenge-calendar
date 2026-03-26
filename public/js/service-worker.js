@@ -36,7 +36,6 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const req = event.request;
 
-  // API caching
   if (req.url.includes("/api/challenges") && req.method === "GET") {
     event.respondWith(
       fetch(req)
