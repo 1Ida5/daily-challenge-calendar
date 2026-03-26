@@ -1,4 +1,25 @@
 {
+  "privacyTitle": "Personvernerklæring",
+  "privacyIntro": "Denne applikasjonen samler inn så lite data som mulig. En bruker er kun en identitet i systemet.",
+
+  "dataCollectedTitle": "Data vi samler inn",
+  "dataUsername": "Valgfritt brukernavn",
+  "dataTos": "Samtykke til bruksvilkår",
+
+  "dataNotCollectedTitle": "Data vi ikke samler inn",
+  "noName": "Navn",
+  "noEmail": "E-post",
+  "noPassword": "Passord",
+
+  "deleteAccount": "Brukeren kan når som helst slette kontoen sin.",
+
+  "tosTitle": "Bruksvilkår",
+  "tosIntro": "Ved å bruke denne applikasjonen godtar brukeren følgende:",
+
+  "tos1": "Brukeren eier selv data de oppretter.",
+  "tos2": "Applikasjonen kan lagre data for at tjenesten skal fungere.",
+  "tos3": "Brukeren kan når som helst slette kontoen sin.",
+
   "title": "Daglig utfordring",
   "authDescription": "Logg inn eller opprett konto",
   "login": "Logg inn",

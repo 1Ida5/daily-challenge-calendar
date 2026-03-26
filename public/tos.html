@@ -1,17 +1,24 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Terms of Service</title>
+    <meta charset="UTF-8" />
+    <title data-i18n="tosTitle">Terms of Service</title>
   </head>
-  <body>
-    <h1>Terms of Service</h1>
 
-    <p>Ved å bruke denne applikasjonen godtar brukeren følgende:</p>
+  <body>
+    <h1 data-i18n="tosTitle"></h1>
+
+    <p data-i18n="tosIntro"></p>
 
     <ul>
-      <li>Brukeren eier selv data de oppretter.</li>
-      <li>Applikasjonen kan lagre data for at tjenesten skal fungere.</li>
-      <li>Brukeren kan når som helst slette kontoen sin.</li>
+      <li data-i18n="tos1"></li>
+      <li data-i18n="tos2"></li>
+      <li data-i18n="tos3"></li>
     </ul>
+
+    <script type="module">
+      import { loadLanguage } from "./js/utils/i18n.js";
+      loadLanguage();
+    </script>
   </body>
 </html>

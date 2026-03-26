@@ -1,29 +1,33 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Privacy Policy</title>
+    <meta charset="UTF-8" />
+    <title data-i18n="privacyTitle">Privacy Policy</title>
   </head>
+
   <body>
-    <h1>Privacy Policy</h1>
+    <h1 data-i18n="privacyTitle">Privacy Policy</h1>
 
-    <p>
-      Denne applikasjonen samler inn så lite data som mulig. En bruker er kun en
-      identitet i systemet.
-    </p>
+    <p data-i18n="privacyIntro"></p>
 
-    <h3>Data vi samler inn</h3>
+    <h3 data-i18n="dataCollectedTitle"></h3>
     <ul>
-      <li>Valgfritt brukernavn</li>
-      <li>Samtykke til Terms of Service</li>
+      <li data-i18n="dataUsername"></li>
+      <li data-i18n="dataTos"></li>
     </ul>
 
-    <h3>Data vi ikke samler inn</h3>
+    <h3 data-i18n="dataNotCollectedTitle"></h3>
     <ul>
-      <li>Navn</li>
-      <li>E-post</li>
-      <li>passord</li>
+      <li data-i18n="noName"></li>
+      <li data-i18n="noEmail"></li>
+      <li data-i18n="noPassword"></li>
     </ul>
 
-    <p>Brukeren kan når som helst slette kontoen sin.</p>
+    <p data-i18n="deleteAccount"></p>
+
+    <script type="module">
+      import { loadLanguage } from "./js/utils/i18n.js";
+      loadLanguage();
+    </script>
   </body>
 </html>

@@ -1,4 +1,25 @@
 {
+  "privacyTitle": "Privacy Policy",
+  "privacyIntro": "This application collects as little data as possible. A user is only an identity in the system.",
+
+  "dataCollectedTitle": "Data we collect",
+  "dataUsername": "Optional username",
+  "dataTos": "Acceptance of Terms of Service",
+
+  "dataNotCollectedTitle": "Data we do not collect",
+  "noName": "Name",
+  "noEmail": "Email",
+  "noPassword": "Password",
+
+  "deleteAccount": "The user can delete their account at any time.",
+
+  "tosTitle": "Terms of Service",
+  "tosIntro": "By using this application, the user agrees to the following:",
+
+  "tos1": "The user owns the data they create.",
+  "tos2": "The application may store data for the service to function.",
+  "tos3": "The user can delete their account at any time.",
+
   "title": "Daily Challenge",
   "authDescription": "Login or create your account",
   "login": "Login",
