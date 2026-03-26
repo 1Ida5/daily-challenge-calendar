@@ -1,5 +1,4 @@
 import { getChallenges, getAllChallenges } from "./api/challengeapi.js";
-
 import { renderCalendar } from "./ui/calendar.js";
 import { loadLanguage } from "./utils/i18n.js";
 
@@ -37,17 +36,30 @@ addBtn.onclick = async () => {
 
   const randomDate = futureDate.toISOString().split("T")[0];
 
-  await fetch("/api/challenges", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+  try {
+    await fetch("/api/challenges", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: user.id,
+        title,
+        challengeDate: randomDate,
+      }),
+    });
+  } catch {
+    const offline = JSON.parse(localStorage.getItem("offlineChallenges")) || [];
+
+    offline.push({
       userId: user.id,
       title,
-      challengeDate: randomDate,
-    }),
-  });
+      challenge_date: randomDate,
+      completed: false,
+    });
+
+    localStorage.setItem("offlineChallenges", JSON.stringify(offline));
+  }
 
   input.value = "";
   load();
@@ -159,6 +171,22 @@ if (deleteBtn) {
     }
   };
 }
+
+window.addEventListener("online", async () => {
+  const offline = JSON.parse(localStorage.getItem("offlineChallenges")) || [];
+
+  for (const challenge of offline) {
+    await fetch("/api/challenges", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(challenge),
+    });
+  }
+
+  localStorage.removeItem("offlineChallenges");
+});
 
 load();
 

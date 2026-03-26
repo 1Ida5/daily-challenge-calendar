@@ -25,9 +25,22 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    }),
-  );
+  const req = event.request;
+
+  if (req.url.includes("/api/challenges") && req.method === "GET") {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(req, clone);
+          });
+          return res;
+        })
+        .catch(() => caches.match(req)),
+    );
+    return;
+  }
+
+  event.respondWith(caches.match(req).then((res) => res || fetch(req)));
 });

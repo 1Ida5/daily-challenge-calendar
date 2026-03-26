@@ -1,6 +1,19 @@
 export async function getChallenges(userId) {
-  const res = await fetch(`/api/challenges?userId=${userId}`);
-  return res.json();
+  try {
+    const res = await fetch(`/api/challenges?userId=${userId}`);
+
+    if (!res.ok) throw new Error();
+
+    const data = await res.json();
+
+    if (!Array.isArray(data)) throw new Error();
+
+    return data;
+  } catch (err) {
+    const offline = JSON.parse(localStorage.getItem("offlineChallenges")) || [];
+
+    return offline;
+  }
 }
 
 export async function getAllChallenges(userId) {
