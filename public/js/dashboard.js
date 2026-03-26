@@ -102,7 +102,7 @@ async function load() {
   renderCalendar(calendar, challengesData, currentDate, t, load, user.id);
 
   if ("caches" in window) {
-    caches.open("daily-challenge-v3").then(async (cache) => {
+    caches.open("daily-challenge-v4").then(async (cache) => {
       try {
         const res = await fetch("/dashboard.html");
         if (res.ok) {
